@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antares.gsc.mapper.NodeLabelMapper">
+
+    <resultMap id="BaseResultMap" type="com.antares.gsc.model.entity.NodeLabel">
+            <result property="did" column="did" jdbcType="BIGINT"/>
+            <result property="gid" column="gid" jdbcType="BIGINT"/>
+            <result property="nodeLabel" column="node_label" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        did,gid,node_label
+    </sql>
+    <select id="selectDistinctLabelsByDid" resultType="java.lang.String">
+        select DISTINCT(node_label) from node_label where did=#{did}
+    </select>
+</mapper>

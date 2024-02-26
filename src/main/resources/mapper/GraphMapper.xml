@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antares.gsc.mapper.GraphMapper">
+
+    <resultMap id="BaseResultMap" type="com.antares.gsc.model.entity.Graph">
+            <id property="gid" column="gid" jdbcType="BIGINT"/>
+            <result property="did" column="did" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="graphData" column="graph_data" jdbcType="VARCHAR"/>
+            <result property="edgeNum" column="edge_num" jdbcType="INTEGER"/>
+            <result property="nodeNum" column="node_num" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        gid,did,name,
+        graph_data,edge_num,node_num,
+        create_time,update_time,is_delete
+    </sql>
+
+    <select id="selectMaxEdgeNumByDid" resultType="java.lang.Integer">
+        select MAX(edge_num) from graph where did=#{did}
+    </select>
+    <select id="selectMaxNodeNumByDid" resultType="java.lang.Integer">
+        select MAX(node_num) from graph where did=#{did}
+    </select>
+</mapper>
